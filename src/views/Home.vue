@@ -2,6 +2,9 @@
     <div class="home">
         <img alt="Vue logo" src="../assets/logo.png" />
         <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+        <ul>
+            <li>1</li>
+        </ul>
     </div>
 </template>
 
