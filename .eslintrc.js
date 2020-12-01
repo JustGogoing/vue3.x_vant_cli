@@ -13,10 +13,10 @@ module.exports = {
     parserOptions: {
         ecmaVersion: 2020
     },
-    // 这里的配置是eslint的 但是我们使用prettier的, 为了解决冲突 弃用这里的
     rules: {
         "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
         "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+        "@typescript-eslint/no-explicit-any": ["off"],
         indent: ["warn", 4]
     },
     overrides: [
