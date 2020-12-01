@@ -38,7 +38,7 @@
 ```javascript
 yarn add postcss-px-to-viewport
 
-vue.config.js
+// vue.config.js
 const autoprefixer = require("autoprefixer");
 const px2vw = require("postcss-px-to-viewport");
 
@@ -66,4 +66,38 @@ css: {
         }
     }
 }
+```
+## 4. 安装配置vant
+
+```javascript
+yarn add vant@next ts-import-plugin
+
+// vue.config.js
+// 使用ts-important-plugin 动态引入
+// 1. 配置动态引入
+configureWebpack: {
+    module: {
+        rules: [
+            {
+                test: /\.(jsx|tsx|js|ts)$/,
+                loader: 'ts-loader',
+                options: {
+                    transpileOnly: true,
+                    getCustomTransformers: () => ({
+                        before: [ tsImportPluginFactory( {
+                            libraryName: 'vant',
+                            libraryDirectory: 'es',
+                            style: true
+                        })]
+                    }),
+                    compilerOptions: {
+                        module: 'es2015'
+                    }
+                },
+                exclude: /node_modules/
+            }
+        ]
+    },
+},
+// 2. 创建 /plugins/vantImport.ts 并在 main.js中use此插件, 用到组件 在此全局引入一次即可
 ```

@@ -2,6 +2,7 @@
 const path = require("path");
 const autoprefixer = require("autoprefixer");
 const px2vw = require("postcss-px-to-viewport");
+const tsImportPluginFactory = require("ts-import-plugin");
 
 module.exports = {
     publicPath: "/",
@@ -27,6 +28,29 @@ module.exports = {
                 }
             }
         }
+    },
+    configureWebpack: {
+        // 使用ts-important-plugin 动态引入
+        module: {
+            rules: [{
+                test: /\.(jsx|tsx|js|ts)$/,
+                loader: 'ts-loader',
+                options: {
+                    transpileOnly: true,
+                    getCustomTransformers: () => ({
+                        before: [ tsImportPluginFactory( {
+                            libraryName: 'vant',
+                            libraryDirectory: 'es',
+                            style: true
+                        })]
+                    }),
+                    compilerOptions: {
+                        module: 'es2015'
+                    }
+                },
+                exclude: /node_modules/
+            }]
+        },
     },
     chainWebpack: config => {
         config.resolve.alias
