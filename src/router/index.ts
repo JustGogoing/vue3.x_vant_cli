@@ -1,42 +1,12 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Tabbar from "@/Layout/Tabbar/index.vue";
-import Home from "@/views/home/index.vue";
+import User from "@view/account/user.vue";
+import BaseRouters from "./modules/base";
 const routes: Array<RouteRecordRaw> = [
+    ...BaseRouters,
     {
-        path: "/",
-        name: "tabbar",
-        component: Tabbar,
-        redirect: "/home",
-        children: [
-            {
-                path: "/home",
-                name: "Home",
-                component: Home
-            },
-            {
-                path: "/intro",
-                name: "intro",
-                component: Home
-            },
-            {
-                path: "/discover",
-                name: "discover",
-                component: Home
-            },
-            {
-                path: "/mine",
-                name: "mine",
-                component: Home
-            }
-        ]
-    },
-    {
-        path: "/about",
-        name: "about",
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: Home
+        path: "/mine/user",
+        name: "user",
+        component: User
     }
 ];
 

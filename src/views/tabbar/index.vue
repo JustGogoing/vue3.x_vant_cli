@@ -1,10 +1,11 @@
 <template>
     <div class="container">
-        <keep-Alive class="view" :include="url">
-            <transition mode="fade">
-                <router-view />
-            </transition>
-        </keep-Alive>
+        <!-- 使用keepAlive优化, 这里写法不同于2.x版本 -->
+        <router-view class="view" v-slot="{ Component }">
+            <keep-alive :include="url">
+                <component :is="Component" />
+            </keep-alive>
+        </router-view>
         <van-tabbar
             class="tab"
             v-model="index"
@@ -17,7 +18,7 @@
             <van-tabbar-item icon="friends-o" to="/discover"
                 >发现</van-tabbar-item
             >
-            <van-tabbar-item icon="setting-o" to="mine">我的</van-tabbar-item>
+            <van-tabbar-item icon="setting-o" to="/mine">我的</van-tabbar-item>
         </van-tabbar>
     </div>
 </template>
@@ -29,7 +30,7 @@ export default defineComponent({
     name: "tabbar",
     setup() {
         const index = ref(0);
-        const url = ["/home", "intro", "discover", "mine"];
+        const url = ["/home", "/intro", "/discover", "/mine"];
         return {
             index,
             url
