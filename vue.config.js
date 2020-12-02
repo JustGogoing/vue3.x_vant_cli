@@ -56,6 +56,7 @@ module.exports = {
         config.resolve.alias
             .set("@com", resolve("src/components"))
             .set("@view", resolve("src/views"))
+            .set("@store", resolve("src/store"))
             .set("@static", resolve("./static"))
             .set("@src", resolve("./src"));
     },

@@ -17,7 +17,8 @@ module.exports = {
         "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
         "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
         "@typescript-eslint/no-explicit-any": ["off"],
-        indent: ["warn", 4]
+        "@typescript-eslint/no-use-before-define": ["off"],
+        indent: ["warn", 4, { SwitchCase: 1 }]
     },
     overrides: [
         {
