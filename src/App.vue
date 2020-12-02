@@ -1,4 +1,16 @@
 <template>
     <router-view />
 </template>
-<style lang="less"></style>
+<script lang="ts">
+import { defineComponent, onBeforeMount } from "vue";
+import { useStore } from "vuex";
+export default defineComponent({
+    setup() {
+        const store = useStore();
+        onBeforeMount(() => {
+            store.dispatch("userModule/INIT");
+        });
+        return {};
+    }
+});
+</script>
