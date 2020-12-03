@@ -4,9 +4,7 @@
 import axios from "axios";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { ResponseErr } from "./index";
-// import store from "@/store/index";
-import { useStore } from "vuex";
-const store = useStore();
+import store from "@/store/index";
 
 const { CancelToken } = axios;
 const pending: Array<any> = [];
@@ -38,10 +36,9 @@ service.interceptors.request.use(
             }); //config.data为请求参数
         });
         // 头部添加token信息
-        console.log("请求拦截中的store:", store);
-        // if (store.userModule.getter.token) {
-        //     config.headers["token"] = store.userModule.getter.token;
-        // }
+        if (store.getters["userModule/token"]) {
+            config.headers["token"] = store.getters["userModule/token"];
+        }
         config.headers["apiKey"] = process.env.VUE_APP_API_KEY;
         return config;
     },

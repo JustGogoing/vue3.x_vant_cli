@@ -17,7 +17,7 @@ const BASE_ROUTERS: Array<RouteRecordRaw> = [
         children: [
             {
                 path: "home",
-                name: "Home",
+                name: "home",
                 component: Home
             },
             {

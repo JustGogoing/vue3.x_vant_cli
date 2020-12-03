@@ -63,11 +63,10 @@ function _setConfig(options: Options): AxiosRequestConfig {
     } = options;
     // header 不止会有contenttype 这里以后要优化
     const headers = _setHeaders(type);
-    const newUrl = _factoryUrl(url);
     const config: AxiosRequestConfig = {
         headers,
         responseType,
-        url: newUrl,
+        url,
         params,
         method
     };
@@ -78,23 +77,6 @@ function _setConfig(options: Options): AxiosRequestConfig {
         config.onDownloadProgress = onDownloadProgress;
     }
     return config;
-}
-
-/**
- * 对url进行处理
- * @param url
- */
-function _factoryUrl(url: string): string {
-    if (url.startsWith("/__normal__")) {
-        url = url.substring(11);
-        return process.env.VUE_APP_API_NORMAL + url;
-    } else if (url.startsWith("/__course__")) {
-        url = url.substring(11);
-        return process.env.VUE_APP_API_COCURSE + url;
-    } else {
-        console.warn("接口前缀错误");
-        return "";
-    }
 }
 
 /**
