@@ -1,61 +1,107 @@
+import { AxiosRequestConfig, Method } from "axios";
+import { Options, OptionsType } from "./index.d";
 import service from "./request";
 
-/**
- * get请求
- */
-export function GET(
+// get请求
+export const GET = (
     url: string,
     params: object = {},
-    options: object
+    loading: boolean,
+    options: Options
+) => _request("GET", url, params, loading, options);
+// post请求
+export const POST = (
+    url: string,
+    params: object = {},
+    loading: boolean,
+    options: Options
+) => _request("POST", url, params, loading, options);
+
+function _request(
+    method: Method,
+    url: string,
+    params: object = {},
+    loading = false,
+    options: Options
 ): Promise<any> {
-    const config = setConfig(options);
+    if (loading) {
+        console.log("show loading");
+    }
+    const config: AxiosRequestConfig = _setConfig({
+        url,
+        params,
+        method,
+        ...options
+    });
     return new Promise((resolve, reject) => {
-        service({
-            url,
-            params,
-            ...config,
-            method: "GET"
-        })
+        service(config)
             .then(res => {
-                errCodeHandler(res, resolve, reject);
+                resolve(res);
             })
             .catch(err => {
                 reject(err);
             });
+    }).then(() => {
+        if (loading) {
+            console.log("hide loading");
+        }
     });
 }
-
 /**
- * 对于一些请求需要单独处理
- * @param {Object} options
- * @param {Number} options.type  header的几种类型, 如下
- * @param {String} options.responseType 返回的数据类型
- * @param {Function} options.upcb 上传函数进度的回调函数
- * @param {Function} options.downcb 下载函数进度的回调函数
- * xxx  对于请求过期时间可能还要单独处理以适应上传等
+ * 设置请求参数
+ * @param options AxiosRequestConfig
  */
-function setConfig(options) {
-    const { type = 0, responseType = "json", upcb, downcb } = options;
-    const Header = setHeader(type);
-
-    const header = {
-        headers: Header,
-        responseType
+function _setConfig(options: Options): AxiosRequestConfig {
+    const {
+        type = 0,
+        responseType = "json",
+        onUploadProgress,
+        onDownloadProgress,
+        url = "",
+        params,
+        method
+    } = options;
+    // header 不止会有contenttype 这里以后要优化
+    const headers = _setHeaders(type);
+    const newUrl = _factoryUrl(url);
+    const config: AxiosRequestConfig = {
+        headers,
+        responseType,
+        url: newUrl,
+        params,
+        method
     };
-    if (upcb) {
-        header.onUploadProgress = upcb;
+    if (onUploadProgress) {
+        config.onUploadProgress = onUploadProgress;
     }
-    if (downcb) {
-        header.onDownloadProgress = downcb;
+    if (onDownloadProgress) {
+        config.onDownloadProgress = onDownloadProgress;
     }
-    return header;
+    return config;
 }
 
 /**
- * 对于部分请求是需要修改header的配置的
- * @param {*} type
+ * 对url进行处理
+ * @param url
  */
-function setHeader(type) {
+function _factoryUrl(url: string): string {
+    if (url.startsWith("/__normal__")) {
+        url = url.substring(11);
+        return process.env.VUE_APP_API_NORMAL + url;
+    } else if (url.startsWith("/__course__")) {
+        url = url.substring(11);
+        return process.env.VUE_APP_API_COCURSE + url;
+    } else {
+        console.warn("接口前缀错误");
+        return "";
+    }
+}
+
+/**
+ * 设置请求头
+ * @param type
+ */
+function _setHeaders(type: OptionsType): any {
     let typeStr;
     switch (type) {
         case 1:
@@ -83,20 +129,4 @@ function setHeader(type) {
             break;
     }
     return { "Content-Type": typeStr };
-}
-
-/**
- * 对错误代码的处理
- */
-function errCodeHandler(res, resolve, reject) {
-    const { errno, message } = res;
-    switch (errno) {
-        case 0:
-            resolve(res);
-            break;
-        default:
-            console.log(message);
-            reject(res);
-            break;
-    }
 }

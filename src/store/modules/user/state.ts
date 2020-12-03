@@ -1,7 +1,7 @@
 /**
  * 用户信息模块
  */
-export const state: State = {
+const state: State = {
     user: {
         avatar: "",
         name: "",
@@ -11,9 +11,11 @@ export const state: State = {
     }
 };
 
+// 整个state
 export interface State {
     user: User;
 }
+// state中的user
 export interface User {
     avatar: string;
     name: string;
@@ -21,3 +23,5 @@ export interface User {
     uuid: string;
     token: string;
 }
+
+export default state;

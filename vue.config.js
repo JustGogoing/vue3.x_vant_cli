@@ -54,9 +54,8 @@ module.exports = {
     },
     chainWebpack: config => {
         config.resolve.alias
-            .set("@com", resolve("src/components"))
-            .set("@view", resolve("src/views"))
-            .set("@store", resolve("src/store"))
+            .set("@com", resolve("./src/components"))
+            .set("@view", resolve("./src/views"))
             .set("@static", resolve("./static"))
             .set("@src", resolve("./src"));
     },
