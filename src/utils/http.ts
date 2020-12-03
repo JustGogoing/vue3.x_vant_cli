@@ -5,24 +5,24 @@ import service from "./request";
 // get请求
 export const GET = (
     url: string,
-    params: object = {},
-    loading: boolean,
-    options: Options
+    params?: object,
+    loading?: boolean,
+    options?: Options
 ) => _request("GET", url, params, loading, options);
 // post请求
 export const POST = (
     url: string,
-    params: object = {},
-    loading: boolean,
-    options: Options
+    params?: object,
+    loading?: boolean,
+    options?: Options
 ) => _request("POST", url, params, loading, options);
 
 function _request(
     method: Method,
     url: string,
-    params: object = {},
+    params?: object,
     loading = false,
-    options: Options
+    options?: Options
 ): Promise<any> {
     if (loading) {
         console.log("show loading");

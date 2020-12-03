@@ -115,3 +115,11 @@ vueRouter 和之前没什么区别,模块划分和配置都和以前一样即可
     </keep-alive>
 </router-view>
 ```
+
+## 6. vuex 的配置
+
+vuex 的配置基本没有变, 但是方法变了, 具体看项目
+
+## 7. axios 的封装
+
+具体看`utils/request`和`utils/http`文件
