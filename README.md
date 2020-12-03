@@ -1,6 +1,6 @@
-# 基于vue3.x+Ts+Webpack+Vant的移动端开发脚手架
+# 基于 vue3.x+Ts+Webpack+Vant 的移动端开发脚手架
 
-### 1. 调整eslint 与 prettier的冲突
+### 1. 调整 eslint 与 prettier 的冲突
 
 ```JavaScript
     // .eslinrc.js
@@ -27,13 +27,13 @@
     }
 ```
 
-### 2. 配置vue.config.js以及环境变量
+### 2. 配置 vue.config.js 以及环境变量
 
 根目录创建 `.env`, `.env.production`, `.env.development`, 不用区分环境的 写在`.env`, 变量以 `VUE_APP`开头 例如`VUE_APP_API`
 
-以及alias, 全局css reset文件 less文件
+以及 alias, 全局 css reset 文件 less 文件
 
-## 3. 使用vw进行适配
+## 3. 使用 vw 进行适配
 
 ```javascript
 yarn add postcss-px-to-viewport
@@ -67,7 +67,8 @@ css: {
     }
 }
 ```
-## 4. 安装配置vant
+
+## 4. 安装配置 vant
 
 ```javascript
 yarn add vant@next ts-import-plugin
@@ -100,4 +101,17 @@ configureWebpack: {
     },
 },
 // 2. 创建 /plugins/vantImport.ts 并在 main.js中use此插件, 用到组件 在此全局引入一次即可
+```
+
+## 5. vue-router 的设置
+
+vueRouter 和之前没什么区别,模块划分和配置都和以前一样即可,但部分地方有改动, 以前可以使用`<keep-alive></keep-alive>`和`<transition></transition>`包裹`<router-view/>`标签, 但是现在现在不可以
+
+```html
+<!-- 使用keepAlive优化, 这里写法不同于2.x版本 -->
+<router-view class="view" v-slot="{ Component }">
+    <keep-alive :include="url">
+        <component :is="Component" />
+    </keep-alive>
+</router-view>
 ```

@@ -5,6 +5,7 @@ import { RouteRecordRaw } from "vue-router";
 import Tabbar from "@view/tabbar/index.vue";
 import Home from "@view/tabbar/home.vue";
 import Intro from "@view/tabbar/intro.vue";
+import Publish from "@view/tabbar/publish.vue";
 import Discover from "@view/tabbar/discover.vue";
 import Mine from "@view/tabbar/mine.vue";
 const BASE_ROUTERS: Array<RouteRecordRaw> = [
@@ -23,6 +24,11 @@ const BASE_ROUTERS: Array<RouteRecordRaw> = [
                 path: "intro",
                 name: "intro",
                 component: Intro
+            },
+            {
+                path: "publish",
+                name: "publish",
+                component: Publish
             },
             {
                 path: "discover",

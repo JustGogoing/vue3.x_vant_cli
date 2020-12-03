@@ -9,16 +9,22 @@
         <van-tabbar
             class="tab"
             v-model="index"
-            :fixed="false"
-            :safe-area-inset-bottom="true"
+            :placeholder="true"
+            :border="false"
             route
         >
             <van-tabbar-item icon="home-o" to="/home">首页</van-tabbar-item>
-            <van-tabbar-item icon="search" to="/intro">普法</van-tabbar-item>
-            <van-tabbar-item icon="friends-o" to="/discover"
-                >发现</van-tabbar-item
-            >
-            <van-tabbar-item icon="setting-o" to="/mine">我的</van-tabbar-item>
+            <van-tabbar-item icon="search" to="/intro">介绍</van-tabbar-item>
+            <van-tabbar-item to="/publish">
+                <van-icon
+                    class="publish"
+                    size="44"
+                    name="add"
+                    color="#1989fa"
+                />
+            </van-tabbar-item>
+            <van-tabbar-item icon="search" to="/discover">发现</van-tabbar-item>
+            <van-tabbar-item icon="friends-o" to="/mine">我的</van-tabbar-item>
         </van-tabbar>
     </div>
 </template>
@@ -54,6 +60,11 @@ export default defineComponent({
     .tab {
         flex: none;
         width: 100vw;
+        .publish {
+            background-color: #fff;
+            transform: translateY(-50%);
+            border-radius: 50%;
+        }
     }
 }
 </style>
