@@ -13,7 +13,7 @@ const BASE_ROUTERS: Array<RouteRecordRaw> = [
         path: "/",
         name: "tabbar",
         component: Tabbar,
-        redirect: "/home",
+        redirect: { name: "home" },
         children: [
             {
                 path: "home",
@@ -39,6 +39,25 @@ const BASE_ROUTERS: Array<RouteRecordRaw> = [
                 path: "mine",
                 name: "mine",
                 component: Mine
+            }
+        ]
+    },
+    {
+        path: "/account",
+        name: "account",
+        redirect: { name: "login" },
+        component: () =>
+            import(
+                /* webpackChunkName: "account" */ `@/views/account/index.vue`
+            ),
+        children: [
+            {
+                path: "login",
+                name: "login",
+                component: () =>
+                    import(
+                        /* webpackChunkName: "account" */ `@/views/account/login.vue`
+                    )
             }
         ]
     }
