@@ -39,7 +39,6 @@ service.interceptors.request.use(
         if (store.getters["userModule/token"]) {
             config.headers["token"] = store.getters["userModule/token"];
         }
-        config.headers["apiKey"] = process.env.VUE_APP_API_KEY;
         return config;
     },
     err => {
