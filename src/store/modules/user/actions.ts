@@ -1,12 +1,13 @@
-import { ActionContext } from "vuex";
-import { State } from "./state";
+import { ActionContext, ActionTree } from "vuex";
+import { UserState } from "./index.d";
+import { RootState } from "@/store/index.d";
 import * as TYPES from "./types";
 
-const actions = {
+const actions: ActionTree<UserState, RootState> = {
     /**
      * 初始化本地数据一系列操作
      */
-    async INIT({ commit }: ActionContext<State, any>) {
+    async INIT({ commit }: ActionContext<UserState, any>) {
         // 这里初始化本地数据
         console.log("INIT");
         commit(TYPES.INIT, "log");

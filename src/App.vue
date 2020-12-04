@@ -8,7 +8,7 @@ export default defineComponent({
     setup() {
         const store = useStore();
         onBeforeMount(() => {
-            store.dispatch("userModule/INIT");
+            store.dispatch("user/INIT");
         });
         return {};
     }
