@@ -33,19 +33,18 @@ function _request(
         method,
         ...options
     });
-    return new Promise((resolve, reject) => {
-        service(config)
-            .then(res => {
-                resolve(res);
-            })
-            .catch(err => {
-                reject(err);
-            });
-    }).then(() => {
-        if (loading) {
-            console.log("hide loading");
-        }
-    });
+    return service(config)
+        .then(res => {
+            return Promise.resolve(res);
+        })
+        .catch(err => {
+            return Promise.reject(err);
+        })
+        .finally(() => {
+            if (loading) {
+                console.log("hide loading");
+            }
+        });
 }
 /**
  * 设置请求参数
@@ -67,9 +66,13 @@ function _setConfig(options: Options): AxiosRequestConfig {
         headers,
         responseType,
         url,
-        params,
         method
     };
+    if (method === "GET") {
+        config.params = params;
+    } else {
+        config.data = params;
+    }
     if (onUploadProgress) {
         config.onUploadProgress = onUploadProgress;
     }
