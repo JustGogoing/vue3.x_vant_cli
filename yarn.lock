@@ -1241,6 +1241,11 @@
   dependencies:
     jest-diff "^24.3.0"
 
+"@types/js-cookie@^2.2.6":
+  version "2.2.6"
+  resolved "https://registry.npm.taobao.org/@types/js-cookie/download/@types/js-cookie-2.2.6.tgz#f1a1cb35aff47bc5cfb05cb0c441ca91e914c26f"
+  integrity sha1-8aHLNa/0e8XPsFywxEHKkekUwm8=
+
 "@types/json-schema@^7.0.3", "@types/json-schema@^7.0.4", "@types/json-schema@^7.0.5":
   version "7.0.6"
   resolved "https://registry.npm.taobao.org/@types/json-schema/download/@types/json-schema-7.0.6.tgz?cache=0&sync_timestamp=1605053861867&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fjson-schema%2Fdownload%2F%40types%2Fjson-schema-7.0.6.tgz#f4c7ec43e81b319a9815115031709f26987891f0"
@@ -6616,6 +6621,11 @@ js-beautify@^1.6.12, js-beautify@^1.6.14:
     mkdirp "^1.0.4"
     nopt "^5.0.0"
 
+js-cookie@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.npm.taobao.org/js-cookie/download/js-cookie-2.2.1.tgz#69e106dc5d5806894562902aa5baec3744e9b2b8"
+  integrity sha1-aeEG3F1YBolFYpAqpbrsN0Tpsrg=
+
 js-message@1.0.7:
   version "1.0.7"
   resolved "https://registry.npm.taobao.org/js-message/download/js-message-1.0.7.tgz?cache=0&sync_timestamp=1605132733712&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fjs-message%2Fdownload%2Fjs-message-1.0.7.tgz#fbddd053c7a47021871bb8b2c95397cc17c20e47"
@@ -9493,6 +9503,11 @@ shellwords@^0.1.1:
   resolved "https://registry.npm.taobao.org/shellwords/download/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha1-1rkYHBpI05cyTISHHvvPxz/AZUs=
 
+shvl@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.npm.taobao.org/shvl/download/shvl-2.0.1.tgz#e49c21b7f223041dd3912c5ce9abf2474b69e680"
+  integrity sha1-5Jwht/IjBB3TkSxc6avyR0tp5oA=
+
 sigmund@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/sigmund/download/sigmund-1.0.1.tgz#3ff21f198cad2175f9f3b781853fd94d0d19b590"
@@ -10769,6 +10784,14 @@ vue@^3.0.0:
     "@vue/compiler-dom" "3.0.3"
     "@vue/runtime-dom" "3.0.3"
     "@vue/shared" "3.0.3"
+
+vuex-persistedstate@^4.0.0-beta.1:
+  version "4.0.0-beta.1"
+  resolved "https://registry.npm.taobao.org/vuex-persistedstate/download/vuex-persistedstate-4.0.0-beta.1.tgz?cache=0&sync_timestamp=1602227372366&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvuex-persistedstate%2Fdownload%2Fvuex-persistedstate-4.0.0-beta.1.tgz#f84cda8d1dd1bb5eb19f4e64753f78b2569f605f"
+  integrity sha1-+EzajR3Ru16xn05kdT94slafYF8=
+  dependencies:
+    deepmerge "^4.2.2"
+    shvl "^2.0.0"
 
 vuex@^4.0.0-0:
   version "4.0.0-rc.2"

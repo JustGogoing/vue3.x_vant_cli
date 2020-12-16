@@ -1,4 +1,31 @@
 import { UA } from "./index.d";
+import Cookie from "js-cookie";
+
+/**
+ * 对cookie的操作
+ */
+export const setCookie = (
+    name: string,
+    value: any,
+    time: number | Date | undefined,
+    path: string,
+    secure: boolean
+) => {
+    return Cookie.set(name, value, { expires: time, path, secure });
+};
+// 获取cookie
+export const getCookie = (name: string) => {
+    return Cookie.get(name);
+};
+// 获取Object cookie
+export const getCookieJson = (name: string) => {
+    return Cookie.getJSON(name);
+};
+// 删除 单个cookie
+export const romveCookie = (name: string) => {
+    return Cookie.remove(name);
+};
+
 /**
  * 1. 判断浏览器
  * 先判断是不是电脑,
